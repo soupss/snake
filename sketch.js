@@ -227,7 +227,8 @@ function draw() {
 
         //instructions
         if (game.guide && !game.ended) {
-            textSize(w * 0.08);
+            textSize(w * 0.07);
+            strokeWeight(0);
             fill(0);
 
             var txt = {
@@ -235,7 +236,7 @@ function draw() {
                 y: h * 0.15
             }
             if (snake.dir.x == 0 && snake.dir.y == 0) {
-                text('swi pe to move!', txt.x, txt.y)
+                text('swipe to move!', txt.x, txt.y)
             }
             else if (snake.body.length == 1) {
                 text('eat to grow!', txt.x, txt.y)
