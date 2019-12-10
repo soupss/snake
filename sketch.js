@@ -75,7 +75,7 @@ function new_game(fps) {
 
 function setup() {
     var disclaimer_element = document.getElementById("disclaimer");
-    disclaimer_element.style.display = "none";
+    disclaimer_element.parentNode.removeChild(disclaimer_element);
     var canvas = createCanvas(w * pixel_size, h * pixel_size);
     canvas.parent("canvas-container");
     screen.orientation.lock("portrait");
