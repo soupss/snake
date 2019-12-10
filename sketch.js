@@ -142,7 +142,7 @@ function setup() {
     button.again.onRelease = function () {
         game.ended = false;
         game.started = true;
-        new_game(savedDifficulty);
+        new_game(saved.difficulty);
     };
 
     // back button
