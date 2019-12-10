@@ -37,7 +37,8 @@ var saved = {
 
 var game = {
     started: false,
-    ended: false
+    ended: false,
+    guide: true
 };
 
 const difficulties = {
@@ -80,9 +81,10 @@ function setup() {
     canvas.parent("canvas-container");
     screen.orientation.lock("portrait");
     colorMode(HSB);
+    textAlign(CENTER, CENTER);
 
     // button template
-    button.template.resize(vw * 0.55, vw * 0.18);
+    button.template.resize(vw * 0.55, vh * 0.10);
     button.template.x = vw * 0.5 - button.template.width * 0.5;
     button.template.strokeWeight = vw * 0.015;
     button.template.cornerRadius = 0;
@@ -140,9 +142,11 @@ function setup() {
     button.again.y = centerbtns(2);
     button.again.text = "again";
     button.again.onRelease = function () {
-        game.ended = false;
-        game.started = true;
-        new_game(saved.difficulty);
+        if (game.ended) {
+            game.ended = false;
+            game.started = true;
+            new_game(saved.difficulty);
+        }
     };
 
     // back button
@@ -176,6 +180,8 @@ function draw() {
     // menu
     if (!game.started) {
         drawbg();
+        textSize(vw * 0.22);
+        text('snake', vw * 0.5, vh * 0.1)
         button.easy.draw();
         button.normal.draw();
         button.hard.draw();
@@ -218,6 +224,29 @@ function draw() {
         drawbg();
         snake.input();
         snake.update();
+
+        //instructions
+        if (game.guide && !game.ended) {
+            textSize(w * 0.08);
+            fill(0);
+
+            var txt = {
+                x: w * 0.5,
+                y: h * 0.15
+            }
+            if (snake.dir.x == 0 && snake.dir.y == 0) {
+                text('swi pe to move!', txt.x, txt.y)
+            }
+            else if (snake.body.length == 1) {
+                text('eat to grow!', txt.x, txt.y)
+            }
+            else if (snake.body.length == 2) {
+                text('go as far\nas you can!', txt.x, txt.y)
+            }
+        }
+        if (snake.body.length >= 5) {
+            game.guide = false;
+        }
 
         if (snake.did_eat(food)) {
             snake.body.push(snake.body[snake.body.length - 1]);
