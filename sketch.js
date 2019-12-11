@@ -267,7 +267,7 @@ function draw() {
 
         // display score
         textSize(w * 0.4);
-        text(snake.body.length - 1, w * 0.5, h * 0.5)
+        text(snake.body.length - 1, w * 0.5, h * 0.6)
 
 
         if (snake.did_eat(food)) {
