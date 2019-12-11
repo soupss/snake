@@ -260,15 +260,14 @@ function draw() {
                 text('go as far\nas you can!', guidetxt.x, guidetxt.y)
             }
         }
+
         if (snake.body.length >= 5) {
             game.guide = false;
         }
 
         // display score
         textSize(w * 0.4);
-        strokeWeight(0);
-        fill(80);
-        text(snake.body.length - 1, w * 0.5, h * 0.4)
+        text(snake.body.length - 1, w * 0.5, h * 0.5)
 
 
         if (snake.did_eat(food)) {
