@@ -79,7 +79,6 @@ function setup() {
     disclaimer_element.parentNode.removeChild(disclaimer_element);
     var canvas = createCanvas(w * pixel_size, h * pixel_size);
     canvas.parent("canvas-container");
-    screen.orientation.lock("portrait");
     colorMode(HSB);
     textAlign(CENTER, CENTER);
 

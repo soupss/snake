@@ -9,7 +9,7 @@ body {
 	padding: 0;
 	justify-content: center;
 	align-items: center;
-	background: white;
+	background: #e0e0e0;
 
 	/* hide scrollbars */
 	overflow: hidden;
