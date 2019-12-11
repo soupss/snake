@@ -200,6 +200,7 @@ function draw() {
         button.hard.draw();
         button.insane.draw();
     }
+
     // reset buttons manually since btn.onOutside does not work on mobile
     else {
         button.easy.color = "#ffffff";
@@ -242,25 +243,33 @@ function draw() {
         if (game.guide && !game.ended) {
             textSize(w * 0.07);
             strokeWeight(0);
-            fill(0);
+            fill(80);
 
-            var txt = {
+            var guidetxt = {
                 x: w * 0.5,
                 y: h * 0.15
             }
+
             if (snake.dir.x == 0 && snake.dir.y == 0) {
-                text('swipe to move!', txt.x, txt.y)
+                text('swipe to move!', guidetxt.x, guidetxt.y)
             }
             else if (snake.body.length == 1) {
-                text('eat to grow!', txt.x, txt.y)
+                text('eat to grow!', guidetxt.x, guidetxt.y)
             }
             else if (snake.body.length == 2) {
-                text('go as far\nas you can!', txt.x, txt.y)
+                text('go as far\nas you can!', guidetxt.x, guidetxt.y)
             }
         }
         if (snake.body.length >= 5) {
             game.guide = false;
         }
+
+        // display score
+        textSize(w * 0.4);
+        strokeWeight(0);
+        fill(80);
+        text(snake.body.length - 1, w * 0.5, h * 0.4)
+
 
         if (snake.did_eat(food)) {
             snake.body.push(snake.body[snake.body.length - 1]);
